@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
+    "dev-linux": "DEBUG=express:* NODE_ENV=development JWT_SECRET=A][-=daposd--KSSDJ23983=-=-skdllaowq nodemon --delay 5 dist/index",
+    "dev-windows": "cross-env DEBUG=express:* NODE_ENV=development JWT_SECRET=A][-=daposd--KSSDJ23983=-=-skdllaowq nodemon --delay 5 dist/index",
+    "start": "node dist/index",
     "gulp": "node_modules/.bin/gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
