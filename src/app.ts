@@ -1,25 +1,27 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
 import { UserRoutes } from './routes/routes';
-
+import * as bodyParser from 'body-parser';
 
 
 class App {
-    public express: express.Application;
+    public app: express.Application;
 
     constructor() {
-        this.express = express();
-        this.middleware(this.express);
-        this.routes(this.express);
+        this.app = express();
+        this.middleware(this.app);
+        this.routes(this.app);
     }
 
-    middleware(express: express.Application) {
-        express.use(morgan('dev'));
+    middleware(app: express.Application) {
+        app.use(morgan('dev'));
+        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(bodyParser.json());
     }
 
-    routes(express: express.Application) {
-        UserRoutes(express);
+    routes(app: express.Application) {
+        UserRoutes(app);
     }
 }
 
-export default new App().express;
+export default new App().app;

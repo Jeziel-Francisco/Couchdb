@@ -1,4 +1,6 @@
 import { Server } from "http";
+import { Response } from "express";
+import * as httpStatus from 'http-status';
 
 export const normalizePort = (val: number | string): number | string | boolean => {
     let port: number = (typeof val === 'string') ? parseInt(val) : val;
@@ -44,5 +46,15 @@ export const handleError = (error: Error) => {
 
     return Promise.reject(new Error(errorMessage));
 }
+
+export const onErrorResponse = (res: Response, error: any) => {
+    let errorMessage: string = `${error.name || 'error'}:${error.message || error}`;
+
+    res.status(httpStatus.BAD_REQUEST).json(errorMessage);
+};
+
+export const onSuccessResponse = (res: Response, data: any) => {
+    res.status(httpStatus.OK).json(data);
+};
 
 export const JWT_SECRET: string = process.env.JWT_SECRET;
