@@ -22,6 +22,10 @@ class Service {
         return db.find(query);
     }
 
+    findById(db: DocumentScope<{}>, _id:string){
+        return db.find();
+    }
+
 }
 
 export default new Service();
